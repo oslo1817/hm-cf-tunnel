@@ -28,7 +28,7 @@ cd $OUTPUT_PATH && tar --owner=root --group=root \
     --transform=s:$OUTPUT_ROOT_NAME/::g
 
 echo "removing temporary build files ..."
-# rm -rf $OUTPUT_ROOT_PATH
+rm -rf $OUTPUT_ROOT_PATH
 
 
 echo; echo "done building '$ADDON_FILE_NAME'"
