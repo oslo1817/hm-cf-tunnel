@@ -81,6 +81,19 @@ info)
     echo "Operations: uninstall restart"
 ;;
 
+configure)
+    if [ -z "$2" ]; then
+        echo "no cloudflared service token provided" >&2; exit 1
+    else
+        # Remove the previous cloudflared service (ignoring any errors).
+        set +e; $ADDON_PATH/cfd-service.sh uninstall 2>&1 > /dev/null; set -e
+
+        # Install a new cloudflared service.
+        $ADDON_PATH/cfd-service.sh install "$2"
+        echo; $ADDON_PATH/cfd-service.sh start
+    fi
+;;
+
 start|stop|restart)
     # Delegate to the service script (ignoring any errors).
     set +e; $ADDON_PATH/cfd-service.sh "$1" 2>&1 >/dev/null; set -e
@@ -96,7 +109,8 @@ uninstall)
 
 *)
     # Print script usage. The install command is considered internal.
-    echo "Usage: hm-cf-tunnel {info|start|stop|restart|uninstall}" >&2; exit 1
+    command_list="info|configure|start|stop|restart|uninstall"
+    echo "Usage: hm-cf-tunnel {$command_list}" >&2; exit 1
 ;;
 
 esac
