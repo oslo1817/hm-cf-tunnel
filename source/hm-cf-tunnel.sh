@@ -20,33 +20,38 @@ CFD_PATH=$ADDON_PATH/cloudflared
 case "$1" in
 
 install)
-    # Check for /usr/local mounts.
-    mount | grep /usr/local 2>&1 >/dev/null
+    if [ -f update_script ]; then
+        # Check for /usr/local mounts.
+        mount | grep /usr/local 2>&1 >/dev/null
 
-    if [ $? -eq 1 ]; then
-        # A mount for /usr/local exists.
-        mount /usr/local # Mount it now.
+        if [ $? -eq 1 ]; then
+            # A mount for /usr/local exists.
+            mount /usr/local # Mount it now.
+        fi
+
+        # Setup required directories.
+        mkdir -p $ADDON_PATH && chmod 755 $ADDON_PATH
+        mkdir -p $RC_PATH && chmod 755 $RC_PATH
+
+        rm -rf $ADDON_PATH/* # Clean addon directory.
+
+        # Copy files and setup RC script.
+        cp -af ./$ADDON_NAME/* $ADDON_PATH
+        cp -f ./$ADDON_NAME.sh $RC_PATH/$ADDON_NAME
+        chmod +x $RC_PATH/$ADDON_NAME
+
+        # Link web files into www addon directory.
+        ln -sf $ADDON_PATH/$WWW_NAME $ADDON_WWW_PATH
+
+        # Install cloudflared executable.
+        cd $ADDON_PATH && ./cfd-install.sh
+
+        sync # Persist changes to disk.
+        exit 0 # No reboot required.
+    else
+        # Prevent installs after the actual install.
+        echo "install requires update_script" >&2; exit 1
     fi
-
-    # Setup required directories.
-    mkdir -p $ADDON_PATH && chmod 755 $ADDON_PATH
-    mkdir -p $RC_PATH && chmod 755 $RC_PATH
-
-    rm -rf $ADDON_PATH/* # Clean addon directory.
-
-    # Copy files and setup RC script.
-    cp -af ./$ADDON_NAME/* $ADDON_PATH
-    cp -f ./$ADDON_NAME.sh $RC_PATH/$ADDON_NAME
-    chmod +x $RC_PATH/$ADDON_NAME
-
-    # Link web files into www addon directory.
-    ln -sf $ADDON_PATH/$WWW_NAME $ADDON_WWW_PATH
-
-    # Install cloudflared executable.
-    cd $ADDON_PATH && ./cfd-install.sh
-
-    sync # Persist changes to disk.
-    exit 0 # No reboot required.
 ;;
 
 info)
