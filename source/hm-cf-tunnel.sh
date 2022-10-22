@@ -11,14 +11,10 @@ ADDON_DESCRIPTION="Cloudflare Tunnel CCU Addon"
 ADDON_TITLE="Cloudflare Tunnel"
 
 ADDON_PATH=/usr/local/addons/$ADDON_NAME
-ADDON_VERSION=$(cat $ADDON_PATH/VERSION)
 ADDON_WWW_PATH=$WWW_PATH/$ADDON_NAME
 ADDON_WWW_URL=/addons/$ADDON_NAME
 
 CFD_PATH=$ADDON_PATH/cloudflared
-
-# Parse cloudflared version without build time.
-CFD_VERSION=$($CFD_PATH --version | sed "s: (.*::g")
 
 
 case "$1" in
@@ -54,6 +50,11 @@ install)
 ;;
 
 info)
+    ADDON_VERSION=$(cat $ADDON_PATH/VERSION)
+
+    # Parse cloudflared version without build time.
+    CFD_VERSION=$($CFD_PATH --version | sed 's: (.*::g')
+
     echo "Name: $ADDON_TITLE"
     echo "Version: $ADDON_VERSION"
 
