@@ -71,16 +71,22 @@ info)
     echo "Operations: uninstall restart"
 ;;
 
-start)
-    echo "not implemented"
-;;
-
-restart)
-    echo "not implemented"
+start|stop|restart)
+    # Delegate to the service script (ignoring any errors).
+    set +e; $ADDON_PATH/cfd-service.sh "$1" 2>&1 >/dev/null; set -e
 ;;
 
 uninstall)
-    echo "not implemented"
+    # Uninstall the cloudflared service (ignoring any errors).
+    set +e; $ADDON_PATH/cfd-service.sh uninstall 2>&1 >/dev/null; set -e
+
+    rm -f $ADDON_WWW_PATH # Unlink web files.
+    rm -rf $ADDON_PATH # Delete all addon files.
+;;
+
+*)
+    # Print script usage. The install command is considered internal.
+    echo "Usage: hm-cf-tunnel {info|start|stop|restart|uninstall}" >&2; exit 1
 ;;
 
 esac
