@@ -17,14 +17,18 @@ install)
         # The cloudflared service file is not installed. Install now.
         echo "installing cloudflared service ..."; echo
 
-        shift # Remove first argument.
-        $CFD_PATH service install "$@"
+        echo "creating cloudflared service ..."
+        shift # Execute intall with all arguments but the first.
+        set +e; $CFD_PATH service install "$@" 2> /dev/null; set -e
 
         if [ -f $CFD_INIT_PATH ]; then
             # The cloudflared service file was installed. Apply patches.
 
             echo "patching cloudflared service file ..."
-            patch -p0 < $ADDON_PATH/cfd-service.patch
+            patch -p0 < $ADDON_PATH/cfd-service.patch > /dev/null
+        else
+            # The cloudflared service file was not installed. Fail.
+            echo "the cloudflared service file was not installed" >&2; exit 1
         fi
     fi
 ;;
