@@ -51,12 +51,10 @@ status)
 
 uninstall)
     if [ -f $CFD_INIT_PATH ]; then
-        # The cloudflared service file is installed. Stop and remove it.
+        # The cloudflared service file is installed.
         echo "uninstalling cloudflared service ..."; echo
-
-        if $0 stop; then
-            echo "deleting service files ..."; rm -f $CFD_INIT_PATH
-        fi
+        set +e; $0 stop; set -e; # Try to stop the service.
+        echo "deleting service files ..."; rm -f $CFD_INIT_PATH
     else
         # The cloudflared service file is not installed. Nothing to do.
         echo "the cloudflared service file is not installed" >&2; exit 1
