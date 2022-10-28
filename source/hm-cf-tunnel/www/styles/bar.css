@@ -1,0 +1,27 @@
+.bar {
+    border: #ccc thin solid;
+    border-radius: 1rem;
+
+    display: flex;
+
+    margin: 2rem 0;
+}
+
+.bar-content {
+    flex-shrink: 1;
+
+    margin: 0;
+    padding: 1rem;
+}
+
+.bar-title {
+    border-inline-end: #ccc thin solid;
+
+    margin: 0;
+    padding: 1rem;
+}
+
+.bar-header>* {
+    margin-top: 0;
+    margin-bottom: 0;
+}

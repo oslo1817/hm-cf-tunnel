@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #48f;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+}

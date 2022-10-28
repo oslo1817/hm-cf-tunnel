@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <link rel="stylesheet" href="styles/reset.css" />
+
+    <link rel="stylesheet" href="styles/bar.css" />
+    <link rel="stylesheet" href="styles/card.css" />
+    <link rel="stylesheet" href="styles/flex.css" />
+    <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/icon.css" />
+    <link rel="stylesheet" href="styles/input.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/overlay.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/text.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cloudflare Tunnel</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Cloudflare Tunnel</h1>
+
+      <p>
+        This addon manages a Cloudflare/Argo tunnel connection. Such tunnel may
+        be used to access this CCU or RaspberryMatic instance without exposing
+        the host directly to the internet. Checkout
+
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"
+        >
+          the official Cloudflare documentation
+        </a>
+
+        for more details.
+      </p>
+
+      <div class="bar">
+        <div class="bar-title">
+          <strong>Service Status</strong>
+        </div>
+
+        <div class="align-center bar-content flex justify-between">
+          <span id="status" class="status-indicator">Unknown</span>
+          <span id="version" class="text-secondary"></span>
+        </div>
+      </div>
+
+      <form id="configure-form" class="card" action="javascript:void(0);">
+        <div class="card-header">
+          <h2>Update Configuration</h2>
+
+          <p class="text-secondary">
+            Use this form to update the Cloudflare tunnel configuration.
+          </p>
+        </div>
+
+        <div class="card-content overlay-container">
+          <h3>Token</h3>
+
+          <p class="text-secondary">
+            Please supply a token to use for configuring a new Cloudflare
+            tunnel. A token may be obtained through the
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://dash.teams.cloudflare.com"
+            >
+              Cloudflare Zero Trust Dashboard
+            </a>
+
+            in the <b>Access &rarr; Tunnels</b> section.
+          </p>
+
+          <textarea
+            name="token"
+            id="configure-token"
+            placeholder="Paste your Cloudflare tunnel token here."
+            aria-label="Cloudflare tunnel token"
+          ></textarea>
+
+          <div id="configure-overlay-success" class="overlay">
+            <div class="align-center column flex h-100 justify-center">
+              <span class="icon large success">&#x2713;</span>
+
+              <h3>Updated configuration.</h3>
+
+              <p>The newly configured tunnel will start immediately.</p>
+            </div>
+          </div>
+
+          <div id="configure-overlay-failure" class="overlay">
+            <div class="align-center column flex h-100 justify-center">
+              <span class="icon large failure">&#x2717;</span>
+
+              <h3>Update failed.</h3>
+
+              <p id="configure-overlay-failure-message">
+                Something went wrong while updating the configuration.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer flex justify-right">
+          <button id="configure-submit" type="submit">Configure</button>
+        </div>
+      </form>
+
+      <p class="text-center text-small text-tertiary">
+        This open source software project is neither affiliated with nor
+        endorsed by Cloudflare in any way. Cloudflare, the Cloudflare logo, and
+        Cloudflare Tunnel are trademarks and/or registered trademarks of
+        Cloudflare, Inc. in the United States and other jurisdictions.
+      </p>
+
+      <p class="py-4 text-center text-small">
+        This project is licensed under the GNU General Public License v3.0.
+      </p>
+    </div>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+--- /etc/init.d/cloudflared
++++ /etc/init.d/cloudflared
+@@ -24,3 +24,3 @@
+ is_running() {
+-    [ -f "$pid_file" ] && ps $(get_pid) > /dev/null 2>&1
++    [ -f "$pid_file" ] && [ $(ps | grep -c $(get_pid)) -ge 1 ]
+ }
+ 

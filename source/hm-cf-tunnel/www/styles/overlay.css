@@ -1,0 +1,19 @@
+.overlay {
+    background-color: #f8f8fc;
+
+    height: 100%;
+
+    left: 0;
+
+    position: absolute;
+
+    top: 0;
+
+    visibility: hidden;
+
+    width: 100%;
+}
+
+.overlay-container {
+    position: relative;
+}
