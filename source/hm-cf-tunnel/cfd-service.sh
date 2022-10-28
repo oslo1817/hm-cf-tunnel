@@ -49,7 +49,7 @@ status)
         cd $INIT_PATH && $CFD_INIT_PATH status
     else
         # The cloudflared service file does not exit.
-        echo "Stopped (no tunnel)"; exit 1
+        echo "Stopped (no tunnel)"; exit 2
     fi
 ;;
 

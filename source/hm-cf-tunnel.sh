@@ -68,14 +68,22 @@ info)
     echo "Version: $ADDON_VERSION"
 
     echo "Info: <b>$ADDON_DESCRIPTION</b><br>"
-    echo "Info: <i>$CFD_VERSION</i><br>"
+    echo "Info: $CFD_VERSION<br><br>"
 
     if [ $CFD_SERVICE_RUNNING -eq 0 ]; then
-        echo "Info: <p style='color: green'>Status: $CFD_SERVICE_STATUS</p>"
+        echo "Info: <b style='color: green'>Status: $CFD_SERVICE_STATUS</b><br>"
+        echo "Info: The cloudflared service is running the configured tunnel.<br><br>"
+    elif [ $CFD_SERVICE_RUNNING -eq 2 ]; then
+        echo "Info: <b style='color: red'>Status: $CFD_SERVICE_STATUS</b><br>"
+        echo "Info: The cloudflared service is not running, because no tunnel is configured.<br><br>"
     else
-        echo "Info: <p style='color: red'>Status: $CFD_SERVICE_STATUS</p>"
-        echo "Info: Try to restart the service or create a new tunnel."
+        echo "Info: <b style='color: red'>Status: $CFD_SERVICE_STATUS</b><br>"
+        echo "Info: The cloudflared service is not running.<br><br>"
     fi
+
+    echo "Info: <b>Disclaimer</b><br>"
+    echo "Info: This open source software project is neither affiliated with nor endorsed by Cloudflare."
+    echo "Info: Cloudflare, the Cloudflare logo, and Cloudflare Tunnel are trademarks and/or registered trademarks of Cloudflare, Inc. in the United States and other jurisdictions."
 
     echo "Config-Url: $ADDON_WWW_URL/index.html"
     echo "Update: $ADDON_WWW_URL/api/update.cgi"
