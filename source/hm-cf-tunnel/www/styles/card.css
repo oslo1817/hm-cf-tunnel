@@ -1,0 +1,39 @@
+.card {
+    background-color: #f8f8fc;
+
+    box-shadow: #eee 0 0.5rem 1rem 0;
+
+    border: #ccc thin solid;
+    border-radius: 1rem;
+
+    margin: 2rem 0;
+}
+
+.card-header {
+    border-bottom: #ccc thin solid;
+
+    margin: 0;
+    padding: 1rem;
+}
+
+.card-header > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.card-content {
+    margin: 0;
+    padding: 1rem;
+}
+
+.card-footer {
+    border-top: #ccc thin solid;
+
+    margin: 0;
+    padding: 1rem;
+}
+
+.card-footer > * {
+    margin-top: 0;
+    margin-bottom: 0;
+}

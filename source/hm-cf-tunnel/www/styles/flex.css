@@ -1,0 +1,12 @@
+.flex {
+    column-gap: 1rem;
+    
+    display: flex;
+    
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+}
+
+.justify-right {
+    justify-content: right;
+}

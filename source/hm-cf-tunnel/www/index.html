@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <link rel="stylesheet" href="styles/reset.css" />
+
+    <link rel="stylesheet" href="styles/card.css" />
+    <link rel="stylesheet" href="styles/flex.css" />
+    <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/input.css" />
+    <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/text.css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cloudflare Tunnel</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Cloudflare Tunnel</h1>
+
+      <p>
+        This addon manages a Cloudflare/Argo tunnel connection. Such tunnel may
+        be used to access this CCU or RaspberryMatic instance without exposing
+        the host directly to the internet. Checkout
+
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://developers.cloudflare.com/cloudflare-one/connections/connect-apps"
+        >
+          the official Cloudflare documentation
+        </a>
+
+        for more details.
+      </p>
+
+      <form id="configure-form" class="card" action="javascript:void(0);">
+        <div class="card-header">
+          <h2>Update Configuration</h2>
+
+          <p class="text-secondary">
+            Use this form to update the Cloudflare tunnel configuration.
+          </p>
+        </div>
+
+        <div class="card-content">
+          <h3>Token</h3>
+
+          <p class="text-secondary">
+            Please supply a token to use for configuring a new Cloudflare
+            tunnel. A token may be obtained through the
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://dash.teams.cloudflare.com"
+            >
+              Cloudflare Zero Trust Dashboard
+            </a>
+
+            in the <b>Access &rarr; Tunnels</b> section.
+          </p>
+
+          <textarea
+            name="token"
+            id="configure-token"
+            placeholder="Paste your Cloudflare tunnel token here."
+            aria-label="Cloudflare tunnel token"
+          ></textarea>
+        </div>
+
+        <div class="card-footer flex justify-right">
+          <button type="submit">Configure</button>
+        </div>
+      </form>
+
+      <div class="card">
+        <div class="card-header">
+          <h2>Command Output</h2>
+
+          <p class="text-secondary">
+            Any output from commands will be displayed below.
+          </p>
+        </div>
+
+        <div class="card-content">
+          <textarea
+            id="command-output"
+            aria-label="command output"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
