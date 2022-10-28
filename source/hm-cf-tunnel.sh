@@ -57,8 +57,8 @@ install)
 info)
     ADDON_VERSION=$(cat $ADDON_PATH/VERSION)
 
-    # Check the current service status.
-    CFD_SERVICE_STATUS=$($ADDON_PATH/cfd-service.sh status)
+    # Check the service status.
+    CFD_SERVICE_STATUS=$($0 status)
     CFD_SERVICE_RUNNING=$?
 
     # Parse cloudflared version without build time.
@@ -99,6 +99,10 @@ start|stop|restart)
     set +e; $ADDON_PATH/cfd-service.sh "$1" 2>&1 >/dev/null; set -e
 ;;
 
+status)
+    $ADDON_PATH/cfd-service.sh status
+;;
+
 uninstall)
     # Uninstall the cloudflared service (ignoring any errors).
     set +e; $ADDON_PATH/cfd-service.sh uninstall 2>&1 >/dev/null; set -e
@@ -109,7 +113,7 @@ uninstall)
 
 *)
     # Print script usage. The install command is considered internal.
-    command_list="info|configure|start|stop|restart|uninstall"
+    command_list="info|configure|start|stop|restart|status|uninstall"
     echo "Usage: hm-cf-tunnel {$command_list}" >&2; exit 1
 ;;
 
