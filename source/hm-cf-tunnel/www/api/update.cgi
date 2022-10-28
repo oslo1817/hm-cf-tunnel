@@ -1,6 +1,7 @@
 #!/bin/tclsh
 
-source html.tcl
+source include/html.tcl
+source include/http.tcl
 
 
 set release_url "https://github.com/oskarlorenz/hm-cf-tunnel/releases/latest"
@@ -21,18 +22,18 @@ catch {
 
 if { [info exists command]} {
     if { $command == "download" } {
-        puts -nonewline "Content-Type: text/html; charset=utf-8\r\n\r\n"
+        http_status 200 OK
+        http_header Content-Type text/html
+        http_head_end
 
-        puts [
-            html {} [
-                head {} [
-                    meta "http-equiv='refresh' content='0; url=$release_url'"
-                ]
-            ]
-        ]
+        html; head
+            meta http-equiv="refresh" content="0; url=$release_url"
+        head_end; html_end
     }
 } else {
-    puts -nonewline "Content-Type: text/plain; charset=utf-8\r\n\r\n"
+    http_status 200 OK
+    http_header Content-Type text/plain
+    http_head_end
 
     catch {
         set version [ exec /usr/bin/wget -qO- $version_url ]
