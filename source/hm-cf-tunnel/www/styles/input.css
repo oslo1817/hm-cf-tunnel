@@ -7,10 +7,14 @@ button {
     color: white;
 
     opacity: 0.8;
-    
+
     padding: 0.5rem 1rem;
 
     transition: opacity 0.25s ease-out;
+}
+
+button:disabled {
+    opacity: 0.5;
 }
 
 button:hover:not(:disabled) {

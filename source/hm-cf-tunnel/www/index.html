@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="styles/card.css" />
     <link rel="stylesheet" href="styles/flex.css" />
     <link rel="stylesheet" href="styles/font.css" />
+    <link rel="stylesheet" href="styles/icon.css" />
     <link rel="stylesheet" href="styles/input.css" />
     <link rel="stylesheet" href="styles/layout.css" />
+    <link rel="stylesheet" href="styles/overlay.css" />
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/text.css" />
 
@@ -51,7 +53,7 @@
           </p>
         </div>
 
-        <div class="card-content">
+        <div class="card-content overlay-container">
           <h3>Token</h3>
 
           <p class="text-secondary">
@@ -75,30 +77,34 @@
             placeholder="Paste your Cloudflare tunnel token here."
             aria-label="Cloudflare tunnel token"
           ></textarea>
+
+          <div id="configure-overlay-success" class="overlay">
+            <div class="align-center column flex h-100 justify-center">
+              <span class="icon large success">&#x2713;</span>
+
+              <h3>Updated configuration.</h3>
+
+              <p>The newly configured tunnel will start immediately.</p>
+            </div>
+          </div>
+
+          <div id="configure-overlay-failure" class="overlay">
+            <div class="align-center column flex h-100 justify-center">
+              <span class="icon large failure">&#x2717;</span>
+
+              <h3>Update failed.</h3>
+
+              <p id="configure-overlay-failure-message">
+                Something went wrong while updating the configuration.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="card-footer flex justify-right">
-          <button type="submit">Configure</button>
+          <button id="configure-submit" type="submit">Configure</button>
         </div>
       </form>
-
-      <div class="card">
-        <div class="card-header">
-          <h2>Command Output</h2>
-
-          <p class="text-secondary">
-            Any output from commands will be displayed below.
-          </p>
-        </div>
-
-        <div class="card-content">
-          <textarea
-            id="command-output"
-            aria-label="command output"
-            readonly
-          ></textarea>
-        </div>
-      </div>
     </div>
 
     <script src="scripts/main.js"></script>
