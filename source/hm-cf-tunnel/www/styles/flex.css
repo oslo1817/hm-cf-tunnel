@@ -7,12 +7,16 @@
 
     display: flex;
 
-    flex: 0 0 auto;
+    flex: 1 0 auto;
     flex-wrap: wrap;
 }
 
 .column {
     flex-direction: column;
+}
+
+.justify-between {
+    justify-content: space-between;
 }
 
 .justify-center {

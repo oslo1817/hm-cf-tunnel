@@ -21,6 +21,30 @@ function disableConfigureForm(disabled = true) {
   $("configure-submit").disabled = disabled;
 }
 
+async function loadStatus() {
+  const response = await fetch("api/status.cgi");
+
+  if (response.ok) {
+    const { code, status } = await response.json();
+    const running = code == 0, stopped = !running;
+
+    $("status").classList.toggle("running", running);
+    $("status").classList.toggle("stopped", stopped);
+    
+    $("status").textContent = status;
+  }
+}
+
+async function loadVersion() {
+  const response = await fetch("api/version.cgi");
+
+  if (!response.ok) {
+    throw new Error("Failed to load version.");
+  }
+
+  $("version").textContent = await response.text();
+}
+
 function showConfigureOverlay(type, visible = true, timeout = 5000) {
   if (visible) {
     disableConfigureForm();
@@ -35,5 +59,8 @@ function showConfigureOverlay(type, visible = true, timeout = 5000) {
     disableConfigureForm(false);
   }
 }
+
+loadStatus().then(() => setInterval(loadStatus, 1000));
+loadVersion().catch(() => loadVersion());
 
 $("configure-form").addEventListener("submit", configure);

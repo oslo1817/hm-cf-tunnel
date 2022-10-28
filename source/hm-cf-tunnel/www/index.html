@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="styles/reset.css" />
 
+    <link rel="stylesheet" href="styles/bar.css" />
     <link rel="stylesheet" href="styles/card.css" />
     <link rel="stylesheet" href="styles/flex.css" />
     <link rel="stylesheet" href="styles/font.css" />
@@ -43,6 +44,17 @@
 
         for more details.
       </p>
+
+      <div class="bar">
+        <div class="bar-title">
+          <strong>Service Status</strong>
+        </div>
+
+        <div class="align-center bar-content flex justify-between">
+          <span id="status" class="status-indicator">Unknown</span>
+          <span id="version" class="text-secondary"></span>
+        </div>
+      </div>
 
       <form id="configure-form" class="card" action="javascript:void(0);">
         <div class="card-header">

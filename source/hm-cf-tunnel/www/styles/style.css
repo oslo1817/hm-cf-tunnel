@@ -2,3 +2,24 @@
     min-height: 8rem;
     margin-top: 1rem;
 }
+
+#version::before {
+    content: "Version ";
+}
+
+.status-indicator::before {
+    content: "●";
+
+    margin-inline-end: 1rem;
+    margin-inline-start: 0.25rem;
+
+    text-shadow: currentColor 0 0 1rem;
+}
+
+.status-indicator.running {
+    color: #4d8;
+}
+
+.status-indicator.stopped {
+    color: #d44;
+}
