@@ -77,7 +77,8 @@ info)
         echo "Info: Try to restart the service or create a new tunnel."
     fi
 
-    echo "Update: $ADDON_WWW_URL/update.cgi"
+    echo "Config-Url: $ADDON_WWW_URL/index.html"
+    echo "Update: $ADDON_WWW_URL/api/update.cgi"
     echo "Operations: uninstall restart"
 ;;
 
