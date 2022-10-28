@@ -27,7 +27,7 @@ if { [info exists command]} {
         http_head_end
 
         html; head
-            meta http-equiv="refresh" content="0; url=$release_url"
+            meta http-equiv="refresh" content="0\; url=$release_url"
         head_end; html_end
     }
 } else {
