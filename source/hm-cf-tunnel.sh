@@ -81,9 +81,9 @@ info)
         echo "Info: The cloudflared service is not running.<br><br>"
     fi
 
-    echo "Info: <b>Disclaimer</b><br>"
-    echo "Info: This open source software project is neither affiliated with nor endorsed by Cloudflare."
-    echo "Info: Cloudflare, the Cloudflare logo, and Cloudflare Tunnel are trademarks and/or registered trademarks of Cloudflare, Inc. in the United States and other jurisdictions."
+    ADDON_GITHUB_URL="https://github.com/oskarlorenz/hm-cf-tunnel"
+
+    echo "Info: See this <a href='$ADDON_GITHUB_URL' rel='noopener noreferrer' target='_blank'>Project on GitHub</a> for more information and legal notices."
 
     echo "Config-Url: $ADDON_WWW_URL/index.html"
     echo "Update: $ADDON_WWW_URL/api/update.cgi"
